@@ -14,54 +14,6 @@ router.get('/', (req, res) => {
   });
 });
 
-router.get('/:id', (req, res) => {
-  const { id } = req.params;
-
-  Projects.findProject(id)
-  .then(project => {
-    if (project) {
-      res.json(project);
-    } else {
-      res.status(404).json({ message: 'That project id does not exist, sorry.' })
-    }
-  })
-  .catch(err => {
-    res.status(500).json({ message: 'ERROR, sorry something went wrong here' });
-  });
-});
-
-// router.get('/:id/tasks', (req, res) => {
-//     const { id } = req.params;
-  
-//     Projects.findTasks(id)
-//     .then(tasks => {
-//       if (tasks) {
-//         res.json(tasks);
-//       } else {
-//         res.status(404).json({ message: 'could not get the tasks' })
-//       }
-//     })
-//     .catch(err => {
-//       res.status(500).json({ message: 'Something went wrong getting those tasks' });
-//     });
-// });
-
-router.get('/:id/resources', (req, res) => {
-  const { id } = req.params;
-
-  Projects.findResources(id)
-  .then(resources => {
-    if (resources) {
-      res.json(resources);
-    } else {
-      res.status(404).json({ message: 'could not find resources' })
-    }
-  })
-  .catch(err => {
-    res.status(500).json({ message: 'Something went wrong getting the resources for you' });
-  });
-});
-
 router.get('/resources', (req, res) => {
   
     Projects.findAllResources()
